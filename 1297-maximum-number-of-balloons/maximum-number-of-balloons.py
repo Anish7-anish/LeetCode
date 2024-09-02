@@ -2,19 +2,19 @@ class Solution:
     def maxNumberOfBalloons(self, text: str) -> int:
         ballon={"b":1,"a":1,"l":2,"o":2,"n":1}
         count=0
-        counter = {}
+        counter = defaultdict(int)
         dict1={}
         a="ballon"
 
-        if len(text)<6:
-            return 0
+        
 
         for i in text:
-            if i in counter:
-                counter[i]+= 1
-            else:
-                counter[i] = 1
-        print("counter",counter)  
+            if i in ballon:
+                counter[i]+= 1 
+        print(counter)
+
+        if any(c not in counter for c in a):
+            return 0
 
         for i in counter:
             if i in ballon:
