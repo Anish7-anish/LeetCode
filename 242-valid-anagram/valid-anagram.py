@@ -1,12 +1,23 @@
 class Solution:
     def isAnagram(self, s: str, t: str) -> bool:
-        s1=list(s)
-        t1=list(t)
-        if len(s1)==len(t1):
-            for i in s1:
-                if i in t1:
-                    t1.remove(i)
-            if len(t1)==0:
-                return True
-        else:
+        if len(s)!=len(t):
             return False
+        counter = defaultdict(int)
+        sounter = defaultdict(int)
+        for i in s:
+            if i in counter:
+                counter[i] += 1
+            else:
+                counter[i] = 1
+        for i in t:
+            if i in sounter:
+                sounter[i] += 1
+            else:
+                sounter[i] = 1
+        
+        for i in counter:
+            if counter[i] != sounter[i]:
+                return False
+        return True
+        
+        
