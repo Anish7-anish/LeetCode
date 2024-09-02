@@ -1,34 +1,31 @@
 class Solution:
     def canConstruct(self, ransomNote: str, magazine: str) -> bool:
-        d={}
-        k={}
-        counter = 0
+        counter = {}
+        sounter={}
 
-        magazineset = list(set(magazine))
-        ransomNoteset = list(set(ransomNote))
-        for i in range(len(set(ransomNote))):
-            for j in range(len(ransomNote)):
-                if ransomNoteset[i] == ransomNote[j]:
-                    counter+=1
-            d[ransomNoteset[i]] = counter
-            counter = 0
+        for i in magazine:
+            if i in counter:
+                counter[i] += 1
+            else:
+                counter[i] = 1
 
-        for i in range(len(magazineset)):
-            for j in range(len(magazine)):
-                if magazineset[i] == magazine[j]:
-                    counter+=1
-            k[magazineset[i]] = counter
-            counter = 0
-        print(d)
-        print(k)
+        for j in ransomNote:
+            if j in sounter:
+                sounter[j] += 1
+            else:
+                sounter[j] = 1
+
+        print(counter)
+        print(sounter)
         flag=0
-        for i in d:
-            print("d",d[i])
-            if i in k and d[i] <= k[i]:
+        for i in sounter:
+            if i in counter and sounter[i] <= counter[i]:
                 flag=1
             else:
                 return False
         if flag==1:
             return True
+        
+
 
         
