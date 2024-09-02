@@ -17,15 +17,22 @@ class Solution:
 
         print(counter)
         print(sounter)
-        flag=0
-        for i in sounter:
-            if i in counter and sounter[i] <= counter[i]:
-                flag=1
-            else:
+        # flag=0
+        # for i in sounter:
+        #     if i in counter and sounter[i] <= counter[i]:
+        #         flag=1
+        #     else:
+        #         return False
+        # if flag==1:
+        #     return True
+        for i in ransomNote:
+            if i not in counter:
                 return False
-        if flag==1:
-            return True
-        
+            elif counter[i] == 1:
+                del counter[i]
+            else:
+                counter[i]-= 1
+        return True
 
 
         
