@@ -23,6 +23,7 @@ class Solution:
                     
                     if destination in seen:
                         l[0] = 1
+                        break
                         
                     dfs(nei, destination)
 
