@@ -1,23 +1,29 @@
+from collections import defaultdict
 class Solution:
     def isAnagram(self, s: str, t: str) -> bool:
         if len(s)!=len(t):
             return False
-        counter = defaultdict(int)
-        sounter = defaultdict(int)
+        sfreq = defaultdict(int)
+        tfreq = defaultdict(int)
+
         for i in s:
-            if i in counter:
-                counter[i] += 1
+            if i in sfreq:
+                sfreq[i] += 1
             else:
-                counter[i] = 1
+                sfreq[i] = 1
+        
         for i in t:
-            if i in sounter:
-                sounter[i] += 1
+            if i in tfreq:
+                tfreq[i] += 1
             else:
-                sounter[i] = 1
-        
-        for i in counter:
-            if counter[i] != sounter[i]:
+                tfreq[i] = 1
+
+        print(sfreq)
+        print(tfreq)
+
+        for i in s:
+            if sfreq[i]!=tfreq[i]:
                 return False
+        
         return True
-        
-        
+
