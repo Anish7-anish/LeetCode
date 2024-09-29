@@ -1,19 +1,23 @@
 class Solution:
     def isPalindrome(self, s: str) -> bool:
-        s=s.lower()
-        k=list(s)
-        j=['0','1','2','3','4','5','6','7','8','9']
-        k=[i for i in k if (ord(i)>96 and ord(i)<123) or (i in j)]
-        print(k)
-        
-        l=0
-        r=len(k)-1
 
-        while(l<r):
-            if k[l]!=k[r]:
-                return False
+        s = s.lower()
+        pal = ""
+        digits = ['0','1','2','3','4','5','6','7','8','9']
+        digits = set(digits)
+
+        for i in s:
+            if (ord(i)>=97 and ord(i)<=122) or (i in digits):
+                pal = pal + str(i)
+
+        i = 0
+        j = len(pal)-1
+
+        while i < j:
+            if pal[i] == pal[j]:
+                i += 1
+                j -= 1
             else:
-                l+=1
-                r-=1
+                return False
+
         return True
-        
