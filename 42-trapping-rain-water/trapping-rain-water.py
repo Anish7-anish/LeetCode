@@ -6,7 +6,7 @@ class Solution:
         max_right = [0] * n
 
         for i in range(n):
-            j= -i - 1
+            j= n - i - 1
             max_left[i] = l_wall
             max_right[j] = r_wall
             l_wall=max(l_wall,height[i])
