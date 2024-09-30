@@ -13,9 +13,9 @@ class Solution:
             area = h * width
             maxarea = max(maxarea, area)
 
-            if height[left] > height[right]:
-                right-=1
-            else:
+            if height[left] < height[right]:
                 left+=1
+            else:
+                right-=1
 
         return maxarea     
