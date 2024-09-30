@@ -4,7 +4,7 @@ class Solution:
         # i = 0
         # j = 1
 
-        # # 2 pointer approach
+        # Sliding window
         # max_profit = 0
 
         # while j < n:
