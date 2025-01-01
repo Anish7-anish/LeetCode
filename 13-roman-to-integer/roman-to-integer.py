@@ -1,19 +1,23 @@
 class Solution:
     def romanToInt(self, s: str) -> int:
-        dict1={'I':1,'V':5,'X':10,'L':50,'C':100,'D':500,'M':1000}
-        sum1=dict1[s[0]]
-        for i in range(1,len(s)):  
-            if (s[i] == 'V' or s[i] == 'X' )and s[i-1]=='I':
-                sum1 = sum1 - dict1[s[i-1]] + (dict1[s[i]] - dict1[s[i-1]])
-                print(sum1)
-            elif (s[i] == 'L' or s[i] == 'C' )and s[i-1]=='X':
-                sum1 = sum1 - dict1[s[i-1]] + (dict1[s[i]] - dict1[s[i-1]])
-                print(sum1)
-            elif (s[i] == 'D' or s[i] == 'M' )and s[i-1]=='C':
-                sum1 = sum1 - dict1[s[i-1]] + (dict1[s[i]] - dict1[s[i-1]])
-                print(sum1)
+        d = {'I':1,'V':5,'X':10,'L':50,'C':100,'D':500,'M':1000}
+        i = 0
+        ans = 0
+
+        while(i<len(s)):
+            if i!= len(s)-1 and (s[i] == 'I' and (s[i+1] == 'V' or s[i+1] == 'X')):
+                ans += d[s[i+1]] - d[s[i]]
+                i=i+2
+            elif i!= len(s)-1 and (s[i] == 'X' and (s[i+1] == 'L' or s[i+1] == 'C')):
+                ans += d[s[i+1]] - d[s[i]]
+                i=i+2
+            elif i!= len(s)-1 and (s[i] == 'C' and (s[i+1] == 'D' or s[i+1] == 'M')):
+                ans += d[s[i+1]] - d[s[i]]
+                i=i+2
             else:
-                sum1 += dict1[s[i]]
-        return sum1
+                ans += d[s[i]]
+                i+=1
+            
+        return ans
 
         
