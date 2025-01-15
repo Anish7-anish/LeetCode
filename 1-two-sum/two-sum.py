@@ -1,11 +1,15 @@
 class Solution:
     def twoSum(self, nums: List[int], target: int) -> List[int]:
-        h = {}
-
+        d = {}
         for i in range(len(nums)):
-            h[nums[i]] = i
-
+            d[nums[i]] = i
+        
         for i in range(len(nums)):
             y = target - nums[i]
-            if y in h and h[y]!=i:
-                return [i,h[y]]
+            if y in d and d[y]!=i:
+                return [i, d[y]]
+            
+
+
+
+        
