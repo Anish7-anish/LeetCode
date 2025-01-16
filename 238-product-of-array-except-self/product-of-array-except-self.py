@@ -1,8 +1,6 @@
-import numpy as np
-import math
 class Solution:
     def productExceptSelf(self, nums: List[int]) -> List[int]:
-        
+        # l = len(nums)
         l_mult = 1
         r_mult = 1
         n = len(nums)
@@ -17,5 +15,5 @@ class Solution:
             r_mult *= nums[j]
 
         return [l*r for l, r in zip(l_arr, r_arr)]
-
+        
         
