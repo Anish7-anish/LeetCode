@@ -1,36 +1,26 @@
 class Solution:
     def evalRPN(self, tokens: List[str]) -> int:
-        stack=[]
-
+        stk = []
         for i in tokens:
             if i == "+":
-                x=stack.pop()
-                y=stack.pop()
-                stack.append(y+x)
-                
+                a = stk.pop()
+                b = stk.pop()
+                stk.append(a+b)
             elif i == "-":
-                x=stack.pop()
-                y=stack.pop()
-                stack.append(y-x)
-                
+                a = stk.pop()
+                b = stk.pop()
+                stk.append(b-a)
             elif i == "*":
-                x=stack.pop()
-                y=stack.pop()
-                stack.append(y*x)
-                
+                a = stk.pop()
+                b = stk.pop()
+                stk.append(a*b)
             elif i == "/":
-                x=stack.pop()
-                y=stack.pop()
-                
-                if abs(y)<abs(x) :
-                    stack.append(0)
-                else:
-                    stack.append(int(y/x))
-                
+                a = stk.pop()
+                b = stk.pop()
+                if a!=0:
+                    stk.append(int(b/a))
             else:
-                stack.append(int(i))
+                stk.append(int(i))
+        return stk[-1]
         
-        return stack[-1]
 
-
-        
