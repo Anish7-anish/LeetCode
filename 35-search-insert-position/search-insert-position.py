@@ -12,9 +12,6 @@ class Solution:
                 l = m+1
             else:
                 r = m-1
-        if nums[m]>target:
-            return m
-        else:
-            return m+1
+        return l
 
         
