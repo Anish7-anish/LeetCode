@@ -1,21 +1,16 @@
 class Solution:
-
-    # def binsearch(self, nums, start, end):
-        
-
     def search(self, nums: List[int], target: int) -> int:
-        n=len(nums)
-        left=0
-        right = n-1
+        n = len(nums)
+        l = 0
+        r = n - 1
 
-        while left<=right:
-            mid = left + ((right-left)//2)
-
-            if nums[mid] == target:
-                return mid
-            elif target > nums[mid]:
-                left = mid+1
+        while l <= r:
+            m = l + (r - l)//2
+            if nums[m] == target:
+                return m
+            elif target < nums[m]:
+                r = m - 1
             else:
-                right = mid-1
-        return -1        
+                l = m + 1
+        return -1
         
