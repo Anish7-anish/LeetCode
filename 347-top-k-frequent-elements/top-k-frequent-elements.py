@@ -1,28 +1,27 @@
-from collections import Counter
 class Solution:
     def topKFrequent(self, nums: List[int], k: int) -> List[int]:
-        n = len(nums)
-        counter = Counter(nums)
-        buckets = [0] * (n + 1)
+        freq = {}
 
-        for num, freq in counter.items():
-            if buckets[freq] == 0:
-                buckets[freq] = [num]
+        for i in range(len(nums)):
+            if nums[i] in freq:
+                freq[nums[i]]+=1
             else:
-                buckets[freq].append(num)
+                freq[nums[i]]=1
+        heap = []
         
-        ret = []
-        for i in range(n, -1, -1):
-            if buckets[i] != 0:
-                ret.extend(buckets[i])
-            if len(ret) == k:
-                break
+        for key,v in freq.items():
+            heap.append((-v,key))
+        heapq.heapify(heap)
+        print(heap)
         
-        return ret
+        res = []
+        for i in range(k):
+            print(i)
+            _,ans = heapq.heappop(heap)
+            res.append(ans)
+        return res
+        
 
-# Time Complexity: O(n)
-# Space Complexity: O(n)
 
 
-            
-
+        
