@@ -4,13 +4,10 @@ class Solution:
         nums2 = nums[:]
         nums2.sort()
 
-        for i in range(len(nums2)):
-            if i == 0:
-                ans[nums2[i]]==0
-            if nums2[i]==nums2[i-1]:
-                ans[nums2[i]]=ans[nums2[i-1]]
-            else:
-                ans[nums2[i]]=i
+        for i,val in enumerate(nums2):
+            if val not in ans: 
+                ans[val] = i
+        print(ans)
         
         res = [0]*len(nums)
         for i in range(len(nums)):
