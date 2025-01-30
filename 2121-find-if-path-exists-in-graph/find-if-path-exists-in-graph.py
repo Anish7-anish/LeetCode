@@ -7,6 +7,7 @@ class Solution:
             d[v].append(u)
         
         seen = set()
+        seen.add(source)
         stk = [source]
 
         while stk:
@@ -22,3 +23,4 @@ class Solution:
                     
         return False
         
+        #O(V+E)
