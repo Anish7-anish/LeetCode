@@ -1,33 +1,34 @@
 class Solution:
     def findOrder(self, numCourses: int, prerequisites: List[List[int]]) -> List[int]:
-        order =[]
-        D = defaultdict(list)
+        g = defaultdict(list)
+        courses = prerequisites
 
-        for u, v in prerequisites:
-            D[u].append(v)
-        
+        for a,b in courses:
+            g[a].append(b)
 
         UNVISITED = 0
         VISITING = 1
         VISITED = 2
-        states = [UNVISITED] * numCourses
-
-
+        states = [UNVISITED]*numCourses
+        order = []
+        
         def dfs(node):
-            
-            if states[node] == VISITING: return False
-            elif states[node] == VISITED : return True
+            if states[node] == VISITED:
+                return True
+            elif states[node] == VISITING:
+                return False
             
             states[node] = VISITING
 
-            for nei in D[node]:
+            for nei in g[node]:
                 if not dfs(nei):
                     return False
-                
+
             states[node] = VISITED
             order.append(node)
             return True
             
+        
 
         for i in range(numCourses):
             if not dfs(i):
