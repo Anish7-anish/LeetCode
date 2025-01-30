@@ -1,37 +1,24 @@
-from collections import defaultdict
 class Solution:
     def validPath(self, n: int, edges: List[List[int]], source: int, destination: int) -> bool:
-        D = defaultdict(list)
+        d = defaultdict(list)
 
-        for u, v in edges:
-            D[u].append(v)
-            D[v].append(u)
-
+        for u,v in edges:
+            d[u].append(v)
+            d[v].append(u)
+        
         seen = set()
-        seen.add(source)
+        stk = [source]
 
-        l=[0]
-
-        if n == 1 and source == destination:
-            return True
-
-        def dfs(node, destination):
+        while stk:
+            node = stk.pop()
+            if node == destination:
+                print('hi')
+                return True
             
-            for nei in D[node]:
-                if nei not in seen:
-                    seen.add(nei)
+            for nei_node in d[node]:
+                if nei_node not in seen:
+                    seen.add(nei_node)
+                    stk.append(nei_node)
                     
-                    if destination in seen:
-                        l[0] = 1
-                        break
-                        
-                    dfs(nei, destination)
-
-        dfs(source, destination)
-        if l[0] == 1:
-            return True
         return False
-
-
-
         
