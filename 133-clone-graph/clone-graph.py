@@ -5,37 +5,33 @@ class Node:
         self.val = val
         self.neighbors = neighbors if neighbors is not None else []
 """
-from collections import defaultdict
+
 from typing import Optional
 class Solution:
     def cloneGraph(self, node: Optional['Node']) -> Optional['Node']:
-        if not node:
-            return None
+        if node is None:
+            return
+        graph = {}
+        seen = set()
+        def dfs(node,seen):
+            if node is None:
+                return
+            cur_node = Node(node.val)
+            graph[node] = cur_node
+            if node.neighbors is not None:
+                for nei in node.neighbors:
+                    if nei not in seen:
+                        seen.add(nei)
+                        dfs(nei,seen)
+
+        dfs(node,seen)
+
+        for key,val in graph.items():
+            for nei in key.neighbors:
+                nei_node = graph[nei]
+                val.neighbors.append(nei_node)
         
-        start = node
-        stk = [start]
-        visited = set()
-        visited.add(start)
-        o_to_n = {}
+        return graph[node]
 
-        while stk:
-            node = stk.pop()
-            o_to_n[node] = Node(val = node.val)
-
-            for nei in node.neighbors:
-                if nei not in visited:
-                    visited.add(nei)
-                    stk.append(nei)
-
-        for old_node , new_node in o_to_n.items():
-            for nei in old_node.neighbors:
-                nei_node = o_to_n[nei]
-                new_node.neighbors.append(nei_node)
-
-        return o_to_n[start]
-
-        
-
-        
 
         
