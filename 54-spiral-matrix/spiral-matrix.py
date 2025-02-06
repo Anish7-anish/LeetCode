@@ -1,47 +1,57 @@
 class Solution:
     def spiralOrder(self, matrix: List[List[int]]) -> List[int]:
-        m,n = len(matrix), len(matrix[0])
-        ans = []
-        i,j = 0,0
-        UP,DOWN,LEFT,RIGHT = 0,1,2,3
-        direction = RIGHT
+        m , n = len(matrix), len(matrix[0])
+        UP = 1
+        DOWN = 2
+        RIGHT = 3
+        LEFT = 4
+        DIRECTION = RIGHT
 
         UP_WALL = 0
-        RIGHT_WALL = n
         DOWN_WALL = m
         LEFT_WALL = -1
+        RIGHT_WALL = n
 
-        while len(ans)!=m*n:
-            if direction == RIGHT:
+        ans = []
+        i,j = 0,0
+
+        while len(ans)<(m*n):
+            if DIRECTION == RIGHT:
                 while j < RIGHT_WALL:
                     ans.append(matrix[i][j])
                     j+=1
-                RIGHT_WALL-=1
-                i,j = i+1,j-1
-                direction = DOWN
-            elif direction == DOWN:
+                DIRECTION = DOWN
+                i+=1
+                j-=1
+                RIGHT_WALL -=1
+            elif DIRECTION == DOWN:
                 while i < DOWN_WALL:
                     ans.append(matrix[i][j])
                     i+=1
-                DOWN_WALL -=1
-                i,j = i-1,j-1
-                direction = LEFT
-            elif direction == LEFT:
+                DIRECTION = LEFT
+                i-=1
+                j-=1
+                DOWN_WALL-=1
+            elif DIRECTION == LEFT:
                 while j > LEFT_WALL:
                     ans.append(matrix[i][j])
                     j-=1
-                LEFT_WALL +=1
-                i,j= i-1,j+1
-                direction = UP
-            else:
+                DIRECTION = UP
+                i-=1
+                j+=1
+                LEFT_WALL+=1
+            elif DIRECTION == UP:
                 while i > UP_WALL:
                     ans.append(matrix[i][j])
                     i-=1
-                UP_WALL +=1
-                i,j = i+1,j+1
-                direction = RIGHT
-        return ans
+                DIRECTION = RIGHT
+                i+=1
+                j+=1
+                UP_WALL+=1
         
-                    
+        return ans
 
+
+            
+            
         
