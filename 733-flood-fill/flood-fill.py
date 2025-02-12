@@ -4,9 +4,8 @@ class Solution:
         que.append((sr,sc))
         original = image[sr][sc]
         m,n = len(image),len(image[0])
-        if image[sr][sc] == color:
+        if original == color:
             return image
-        
         image[sr][sc] = color
         while que:
             i,j = que.popleft()
