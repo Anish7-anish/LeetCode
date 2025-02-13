@@ -6,15 +6,15 @@
 #         self.right = right
 class Solution:
     def amountOfTime(self, root: Optional[TreeNode], start: int) -> int:
+        if root is None:
+            return 0
         stk = [root]
         graph = defaultdict(set)
-        count = 0
-
+        
         while stk:
             current_node = stk.pop()
             if current_node is None:
                 continue
-            count+=1
             if current_node.left:
                 child = current_node.left
                 graph[current_node.val].add(child.val)
@@ -29,8 +29,7 @@ class Solution:
         print(graph)
         
         num_min = -1
-        que = deque()
-        que.append(start)
+        que = deque([start])
         infected = set([start])
 
         while que:
