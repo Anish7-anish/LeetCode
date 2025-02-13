@@ -31,8 +31,7 @@ class Solution:
         num_min = -1
         que = deque()
         que.append(start)
-        infected = set()
-        infected.add(start)
+        infected = set([start])
 
         while que:
             size = len(que)
