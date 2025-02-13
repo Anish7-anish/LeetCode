@@ -9,7 +9,7 @@ class Solution:
         if root is None:
             return 0
         stk = [root]
-        graph = defaultdict(set)
+        graph = defaultdict(list)
         
         while stk:
             current_node = stk.pop()
@@ -17,16 +17,14 @@ class Solution:
                 continue
             if current_node.left:
                 child = current_node.left
-                graph[current_node.val].add(child.val)
-                graph[child.val].add(current_node.val)
+                graph[current_node.val].append(child.val)
+                graph[child.val].append(current_node.val)
                 stk.append(child)
             if current_node.right:
                 child = current_node.right
-                graph[current_node.val].add(child.val)
-                graph[child.val].add(current_node.val)
+                graph[current_node.val].append(child.val)
+                graph[child.val].append(current_node.val)
                 stk.append(child)
-        
-        print(graph)
         
         num_min = -1
         que = deque([start])
