@@ -21,10 +21,9 @@ class Solution:
         def hasSubTree(root):
             if not root:
                 return False
-            if root.val==subRoot.val and same(root,subRoot):
-                return True
-            # if same(root,subRoot):
-            #     return True
+            if root.val==subRoot.val:
+                if same(root,subRoot):
+                    return True
             
             return hasSubTree(root.left) or hasSubTree(root.right)
 
