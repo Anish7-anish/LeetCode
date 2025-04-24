@@ -14,6 +14,7 @@ class Solution:
                 return
             
             lca[0] = root
+
             if root is p or root is q:
                 return
             elif root.val < p.val and root.val < q.val:
@@ -22,6 +23,10 @@ class Solution:
                 search(root.left)
             else:
                 return
+        
         search(root)
         return lca[0]
-                
+        
+
+
+        
