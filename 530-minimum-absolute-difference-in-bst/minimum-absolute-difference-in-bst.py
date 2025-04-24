@@ -6,21 +6,26 @@
 #         self.right = right
 class Solution:
     def getMinimumDifference(self, root: Optional[TreeNode]) -> int:
-        in_order_arr = []
+        order = []
         def in_order(root):
             if not root:
-                return 
+                return
             
             in_order(root.left)
-            in_order_arr.append(root.val)
+            order.append(root.val)
             in_order(root.right)
+        
         in_order(root)
         
-        left = 0
-        right = 1
+        a = 0
+        b = 1
+        
         min_diff = float('inf')
-        while right < len(in_order_arr):
-            min_diff = min(min_diff,abs(in_order_arr[left]-in_order_arr[right]))
-            left+=1
-            right+=1
+        while b < len(order):
+            cur_diff = abs(order[a] - order[b])
+            min_diff = min(min_diff, cur_diff)
+            a+=1
+            b+=1
+        
         return min_diff
+        
