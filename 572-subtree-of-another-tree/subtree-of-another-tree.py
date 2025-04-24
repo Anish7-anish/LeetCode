@@ -9,24 +9,20 @@ class Solution:
         def same(p,q):
             if not p and not q:
                 return True
-
             if (not p or not q):
                 return False
-            
             if p.val!=q.val:
                 return False
-
             return same(p.left,q.left) and same(p.right,q.right)
-
-        def hasSubTree(root):
+        
+        def hasSubTree(root, subRoot):
             if not root:
                 return False
-            if root.val==subRoot.val:
-                if same(root,subRoot):
-                    return True
             
-            return hasSubTree(root.left) or hasSubTree(root.right)
-
-        return hasSubTree(root)
-
+            if same(root,subRoot):
+                return True
+            
+            return hasSubTree(root.left,subRoot) or hasSubTree(root.right,subRoot)
+        
+        return hasSubTree(root,subRoot)
         
