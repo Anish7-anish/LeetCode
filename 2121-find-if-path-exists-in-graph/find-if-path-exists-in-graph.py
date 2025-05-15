@@ -1,3 +1,4 @@
+from collections import defaultdict
 class Solution:
     def validPath(self, n: int, edges: List[List[int]], source: int, destination: int) -> bool:
         d = defaultdict(list)
@@ -5,22 +6,21 @@ class Solution:
         for u,v in edges:
             d[u].append(v)
             d[v].append(u)
-        
-        seen = set()
-        seen.add(source)
-        stk = [source]
 
-        while stk:
-            node = stk.pop()
+        seen = set()
+        stack = []
+        stack.append(source)
+
+        while stack:
+            node = stack.pop()
             if node == destination:
-                print('hi')
                 return True
-            
             for nei_node in d[node]:
                 if nei_node not in seen:
+                    stack.append(nei_node)
                     seen.add(nei_node)
-                    stk.append(nei_node)
-                    
-        return False
         
-        #O(V+E)
+        return False
+
+
+        
